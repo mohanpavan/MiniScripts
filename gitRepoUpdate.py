@@ -10,4 +10,17 @@ except IndexError:
     pass
 path = Path(path).resolve()
 
-print(subprocess.run('git', stdout= subprocess.PIPE).stdout.decode("utf-8"))
+
+def checkIsModules():
+    hasModules = False
+    console_out = subprocess.run('cat .gitmodules', stdout=subprocess.PIPE).stdout.decode("utf-8")
+    if 'No such file or directory' not in console_out:
+        hasModules = True
+    return hasModules
+
+
+ifSubmodule = checkIsModules()
+(subprocess.run('cat .gitmodules', stdout=subprocess.PIPE).stdout.decode("utf-8"))
+print(subprocess.run('git fetch', stdout=subprocess.PIPE).stdout.decode("utf-8"))
+print(subprocess.run('git remote prune origin', stdout=subprocess.PIPE).stdout.decode("utf-8"))
+
