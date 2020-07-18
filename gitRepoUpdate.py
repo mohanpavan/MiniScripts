@@ -11,3 +11,5 @@ except IndexError:
 path = Path(path).resolve()
 
 print(subprocess.run('git', stdout= subprocess.PIPE).stdout.decode("utf-8"))
+
+print('------------------')
